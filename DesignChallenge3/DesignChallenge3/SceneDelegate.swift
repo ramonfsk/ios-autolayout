@@ -33,8 +33,4 @@ final class CustomNavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    override var childForStatusBarStyle: UIViewController? {
-        topViewController
-    }
 }
