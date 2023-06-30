@@ -15,6 +15,9 @@
 		2C1435462A4CB6BB00168291 /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1435452A4CB6BB00168291 /* Factories.swift */; };
 		2C1435482A4DACD400168291 /* ExampleTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1435472A4DACD400168291 /* ExampleTwoViewController.swift */; };
 		2C14354A2A4DB03500168291 /* ExampleThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1435492A4DB03500168291 /* ExampleThreeViewController.swift */; };
+		2C1435772A4DD3AA00168291 /* ExampleFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1435762A4DD3AA00168291 /* ExampleFourViewController.swift */; };
+		2C1435792A4DD42500168291 /* AdjustSpacersBlueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1435782A4DD42500168291 /* AdjustSpacersBlueView.swift */; };
+		2C14357B2A4DD52E00168291 /* RedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14357A2A4DD52E00168291 /* RedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		2C1435452A4CB6BB00168291 /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		2C1435472A4DACD400168291 /* ExampleTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTwoViewController.swift; sourceTree = "<group>"; };
 		2C1435492A4DB03500168291 /* ExampleThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleThreeViewController.swift; sourceTree = "<group>"; };
+		2C1435762A4DD3AA00168291 /* ExampleFourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFourViewController.swift; sourceTree = "<group>"; };
+		2C1435782A4DD42500168291 /* AdjustSpacersBlueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustSpacersBlueView.swift; sourceTree = "<group>"; };
+		2C14357A2A4DD52E00168291 /* RedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +71,13 @@
 				2C1435352A4CB49B00168291 /* ExampleOneViewController.swift */,
 				2C1435472A4DACD400168291 /* ExampleTwoViewController.swift */,
 				2C1435492A4DB03500168291 /* ExampleThreeViewController.swift */,
+				2C1435762A4DD3AA00168291 /* ExampleFourViewController.swift */,
+				2C1435782A4DD42500168291 /* AdjustSpacersBlueView.swift */,
 				2C1435452A4CB6BB00168291 /* Factories.swift */,
 				2C14353A2A4CB49D00168291 /* Assets.xcassets */,
 				2C14353C2A4CB49D00168291 /* LaunchScreen.storyboard */,
 				2C14353F2A4CB49D00168291 /* Info.plist */,
+				2C14357A2A4DD52E00168291 /* RedView.swift */,
 			);
 			path = AdaptiveLayout;
 			sourceTree = "<group>";
@@ -147,8 +156,11 @@
 				2C1435482A4DACD400168291 /* ExampleTwoViewController.swift in Sources */,
 				2C1435322A4CB49B00168291 /* AppDelegate.swift in Sources */,
 				2C1435462A4CB6BB00168291 /* Factories.swift in Sources */,
+				2C1435772A4DD3AA00168291 /* ExampleFourViewController.swift in Sources */,
+				2C1435792A4DD42500168291 /* AdjustSpacersBlueView.swift in Sources */,
 				2C14354A2A4DB03500168291 /* ExampleThreeViewController.swift in Sources */,
 				2C1435342A4CB49B00168291 /* SceneDelegate.swift in Sources */,
+				2C14357B2A4DD52E00168291 /* RedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
