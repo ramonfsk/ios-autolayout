@@ -1,15 +1,17 @@
 //
-//  SolutionWithConstraints.swift
+//  SolutionWithSpacers.swift
 //  DesignChallengeFInal
 //
-//  Created by Ramon Ferreira do Nascimento on 29/06/23.
+//  Created by Ramon Ferreira do Nascimento on 04/07/23.
 //
 
 import UIKit
 
-class SolutionWithConstraints: UIViewController {
+class SolutionWithSpacers: UIViewController {
+    lazy var bottomAnchorConstraint = NSLayoutConstraint()
+    
     lazy var stackView = UIStackView()
-    lazy var playerView = PlayerView()
+    lazy var playerView = PlayerView(isUsingSpacer: true)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -33,14 +35,16 @@ class SolutionWithConstraints: UIViewController {
     }
     
     private func registerForOrientationChanges() {
-        NotificationCenter.default.addObserver(self, selector: #selector(SolutionWithConstraints.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SolutionWithSpacers.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     @objc func rotated() {
         if UIDevice.current.orientation.isLandscape {
             stackView.axis = .horizontal
+            bottomAnchorConstraint.isActive = true
         } else {
             stackView.axis = .vertical
+            bottomAnchorConstraint.isActive = false
         }
         
         playerView.adjustForOrientiation()
@@ -54,14 +58,13 @@ class SolutionWithConstraints: UIViewController {
         
         view.addSubview(stackView)
         
+        bottomAnchorConstraint = stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
-        
     }
     
     private func makeAlbumCoverImageView() -> UIImageView {

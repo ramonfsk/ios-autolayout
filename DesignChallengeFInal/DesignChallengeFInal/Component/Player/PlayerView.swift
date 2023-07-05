@@ -8,19 +8,29 @@
 import UIKit
 
 class PlayerView: UIView {
-    var topAnchorConstraint = NSLayoutConstraint()
-    var centerYConstraint = NSLayoutConstraint()
+    var isUsingSpacer: Bool
+    
+    lazy var topAnchorConstraint = NSLayoutConstraint()
+    lazy var centerYConstraint = NSLayoutConstraint()
     
     lazy var stackView = UIStackView()
     
-    init() {
+    lazy var topSpacer = UIView()
+    lazy var bottomSpacer = UIView()
+    
+    init(isUsingSpacer: Bool = false) {
+        self.isUsingSpacer = isUsingSpacer
+        
         super.init(frame: .zero)
         
-        stackView = makeStackView(withOrientation: .vertical)
-        stackView.distribution = .fillProportionally
+        if self.isUsingSpacer {
+            topSpacer = makeSpacerView(height: 100)
+            bottomSpacer = makeSpacerView(height: 100)
+        } else {
+            setupInitialOrientation()
+        }
         
         setupViews()
-        setupInitialOrientation()
     }
     
     required init?(coder: NSCoder) {
@@ -32,22 +42,45 @@ class PlayerView: UIView {
     }
     
     private func setupViews() {
+        stackView = makeStackView(withOrientation: .vertical)
+        stackView.distribution = .fillProportionally
+        
         let trackLabel = makeTrackLabel(withText: "Tom Sawyer")
         let albumLabel = makeAlbumLabel(withText: "Rush • Moving Pictures (2011 Remaster)")
         let playerView = ProgressRowView()
         let spotifyButton = makeSpotifyButtonCustomView()
         
-        [trackLabel,
-         albumLabel,
-         playerView,
-         spotifyButton].forEach(stackView.addArrangedSubview(_:))
+        if isUsingSpacer {
+            [topSpacer,
+             trackLabel,
+             albumLabel,
+             playerView,
+             spotifyButton,
+             bottomSpacer].forEach(stackView.addArrangedSubview(_:))
+        } else {
+            [trackLabel,
+             albumLabel,
+             playerView,
+             spotifyButton].forEach(stackView.addArrangedSubview(_:))
+        }
         
         addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-        ])
+        if isUsingSpacer {
+            NSLayoutConstraint.activate([
+                topSpacer.heightAnchor.constraint(equalTo: bottomSpacer.heightAnchor),
+                
+                stackView.topAnchor.constraint(equalTo: topAnchor),
+                stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            ])
+        }
     }
     
     private func setupInitialOrientation() {
@@ -79,12 +112,22 @@ class PlayerView: UIView {
     }
     
     func adjustForOrientiation() {
-        if UIDevice.current.orientation.isLandscape {
-            topAnchorConstraint.isActive.toggle()
-            centerYConstraint.isActive.toggle()
+        if isUsingSpacer {
+            if UIDevice.current.orientation.isLandscape {
+                topSpacer.isHidden = false
+                bottomSpacer.isHidden = false
+            } else {
+                topSpacer.isHidden = true
+                bottomSpacer.isHidden = true
+            }
         } else {
-            topAnchorConstraint.isActive.toggle()
-            centerYConstraint.isActive.toggle()
+            if UIDevice.current.orientation.isLandscape {
+                topAnchorConstraint.isActive.toggle()
+                centerYConstraint.isActive.toggle()
+            } else {
+                topAnchorConstraint.isActive.toggle()
+                centerYConstraint.isActive.toggle()
+            }
         }
     }
 }
